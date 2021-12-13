@@ -1,0 +1,162 @@
+﻿State,Month,"Percent of Determinations Processed
+< 24 hours","Percent of Determinations Processed
+1 - 7 Days","Percent of Determinations Processed
+8 - 30 Days","Percent of Determinations Processed
+31- 45 Days","Percent of Determinations Processed
+45+ Days"
+Alabama,February,74.4,15.7,8.1,1,0.8
+Alabama,March,74.8,15.8,8,1,0.5
+Alabama,April,75,15.3,8.2,0.8,0.7
+Alaska,February,8.7,28.5,24,6.3,32.5
+Alaska,March,12.1,24.8,25.5,5.7,32
+Alaska,April,9,24.3,24.3,5.5,37.1
+Arizona,February,44.6,11.5,21.6,15.9,6.4
+Arizona,March,43.9,11.3,20,19.8,4.9
+Arizona,April,49.4,12.6,20.8,13.8,3.4
+Arkansas,February,,,,,
+Arkansas,March,,,,,
+Arkansas,April,,,,,
+California,February,22.3,17.3,30.9,14.7,14.8
+California,March,22.5,18.9,31.7,15.2,11.7
+California,April,23.2,21.6,33.1,13.6,8.5
+Colorado,February,52.1,21.2,19.8,2.8,4.1
+Colorado,March,49.7,26,17.2,3.4,3.7
+Colorado,April,51.7,25.2,16.9,2.8,3.4
+Connecticut,February,90.2,6.2,2.5,0.4,0.7
+Connecticut,March,89.2,7,3,0.3,0.6
+Connecticut,April,90.4,6.4,2.1,0.6,0.5
+Delaware,February,26.9,35.9,37.2,0,0
+Delaware,March,28,31.9,40.2,0,0
+Delaware,April,28.3,32.4,39.2,0,0
+District of Columbia,February,79.4,5.5,8.4,5.9,0.8
+District of Columbia,March,77.1,4.8,11.3,5.1,1.7
+District of Columbia,April,79.1,3.9,12.8,3.1,1
+Florida,February,35,21.7,34.5,6.1,2.7
+Florida,March,39.7,21.2,30.9,4.3,3.9
+Florida,April,40.5,24.4,26.5,4.3,4.3
+Georgia,February,3,6,18.7,13.2,59.1
+Georgia,March,2.7,6.7,16.4,13.6,60.5
+Georgia,April,3.9,9.3,19.8,9.1,57.8
+Hawaii,February,36,21,21.4,2.6,19.1
+Hawaii,March,25.4,25.1,26.9,3.2,19.4
+Hawaii,April,26.3,23.9,28.5,4.1,17.2
+Idaho,February,71.7,12.3,11.3,2.1,2.7
+Idaho,March,80.4,9.4,8.2,0.7,1.3
+Idaho,April,71.9,12.6,12.4,1.1,2
+Illinois,February,21.5,15.1,28.8,10.1,24.6
+Illinois,March,21,14.8,27.1,9.7,27.4
+Illinois,April,20.5,14.7,26.4,9.3,29.1
+Indiana,February,4.5,5.4,39.3,30.7,20.2
+Indiana,March,4.6,6.1,47.3,30.4,11.6
+Indiana,April,4.8,6.4,58.4,23.4,7
+Iowa,February,10.7,35.6,46.5,4.2,3
+Iowa,March,12.3,40.9,42.4,2.5,1.9
+Iowa,April,18.2,41.8,35.8,2.6,1.7
+Kansas,February,,,,,
+Kansas,March,0.9,18.9,56.2,8.7,15.3
+Kansas,April,0.9,10,34.7,9,45.5
+Kentucky,February,54.2,7.5,13.2,12.1,12.9
+Kentucky,March,56.2,9.1,12.2,11.6,10.9
+Kentucky,April,56.5,9.1,11,12.2,11.2
+Louisiana,February,,,,,
+Louisiana,March,,,,,
+Louisiana,April,,,,,
+Maine,February,5.7,3,8.9,5.1,77.2
+Maine,March,6.7,3.4,10.5,53.6,25.8
+Maine,April,7.4,3.7,9.9,55.5,23.6
+Maryland,February,93.7,5.2,0.9,0.2,0
+Maryland,March,95.7,3.6,0.5,0.2,0
+Maryland,April,96.5,2.9,0.4,0.2,0
+Massachusetts,February,57.3,8.3,10.1,0.8,23.6
+Massachusetts,March,70.8,8,8.9,1,11.3
+Massachusetts,April,74.6,13.2,4.8,1.1,6.4
+Michigan,February,38.3,28.6,23.8,7.7,1.6
+Michigan,March,39.4,28.9,22.7,7.9,1
+Michigan,April,41.8,28.4,22.1,6.6,1
+Minnesota,February,50.1,29.3,20.6,0,0
+Minnesota,March,49.4,29,21.6,0,0
+Minnesota,April,47.8,31,21.2,0,0
+Mississippi,February,1.4,15,45.7,20.9,17
+Mississippi,March,1.8,14.9,43.9,24.4,15
+Mississippi,April,2.1,20.6,42.1,23.6,11.5
+Missouri,February,0.8,24.1,27.1,4.8,43.3
+Missouri,March,0.8,20.4,27.1,5.4,46.3
+Missouri,April,0.7,25.4,23,7.8,43.1
+Montana,February,22.9,15.4,23.8,9,28.9
+Montana,March,25.1,22.5,30.3,8.7,13.5
+Montana,April,26.7,24.6,29.7,8.4,10.7
+Nebraska,February,16.4,12.3,27.8,18.1,25.4
+Nebraska,March,19.2,10.7,31.6,18.2,20.3
+Nebraska,April,19.2,10.7,31.6,18.2,20.3
+Nevada,February,0,62.6,33.8,3,0.7
+Nevada,March,0,68.3,29.6,1.5,0.5
+Nevada,April,0,69.6,28.1,1.8,0.5
+New Hampshire,February,9.9,46.9,38.2,2.3,2.7
+New Hampshire,March,12.3,53.1,30.5,1.9,2.2
+New Hampshire,April,11,53.1,31.9,1.7,2.3
+New Jersey,February,1.8,26.7,30.2,16.5,24.8
+New Jersey,March,2.7,22,30.1,15.8,29.5
+New Jersey,April,4.3,32.2,41.7,7.2,14.8
+New Mexico,February,33.7,18.6,27.2,10.2,10.2
+New Mexico,March,42.2,16.1,22.9,11.2,7.6
+New Mexico,April,42.8,15.8,24,11.6,5.9
+New York,February,,,,,
+New York,March,,,,,
+New York,April,,,,,
+North Carolina,February,0,30,25.3,33,11.7
+North Carolina,March,0,21.2,22.6,42.5,13.7
+North Carolina,April,0,24.9,24.8,45.1,5.2
+North Dakota,February,4.2,23.7,45.1,17.4,9.6
+North Dakota,March,4.2,23.4,38.2,16,18.2
+North Dakota,April,4.8,23.5,44.8,17.4,9.5
+Ohio,February,13.6,17.8,34.5,8.5,25.5
+Ohio,March,14.5,15.1,30.2,11.5,28.6
+Ohio,April,13,16.2,31.1,12.6,27
+Oklahoma,February,100,0,0,0,0
+Oklahoma,March,100,0,0,0,0
+Oklahoma,April,100,0,0,0,0
+Oregon,February,44.4,13.2,13.9,12,16.4
+Oregon,March,44.8,18.5,11.4,13.8,11.6
+Oregon,April,45.7,16.2,10.7,13.1,14.3
+Pennsylvania,February,14.1,21.4,53.8,6.5,4.1
+Pennsylvania,March,14.1,24,52.9,6.1,2.9
+Pennsylvania,April,15.6,24.3,51.6,6.1,2.3
+Rhode Island,February,77.2,9,9.8,3.4,0.7
+Rhode Island,March,75,10.2,11.8,2.4,0.6
+Rhode Island,April,77.6,8.3,11.1,2.5,0.4
+South Carolina,February,0,42.5,48,2.1,7.4
+South Carolina,March,0,71.1,14.2,3.5,11.2
+South Carolina,April,0,71.2,15.7,3.1,10.1
+South Dakota,February,0,65,28.7,6,0.4
+South Dakota,March,0,67.9,26.4,5.6,0.2
+South Dakota,April,0,67.9,25.9,5.9,0.3
+Tennessee,February,,,,,
+Tennessee,March,,,,,
+Tennessee,April,,,,,
+Texas,February,18.9,21.1,52,5.3,2.7
+Texas,March,16.7,30.8,45.7,4.6,2.2
+Texas,April,21.4,26.7,44.5,4.9,2.5
+Utah,February,23.2,33.9,36.9,3.8,2.2
+Utah,March,22.6,37.3,35.2,3.5,1.4
+Utah,April,22.1,37,35.5,3.9,1.4
+Vermont,February,68.7,0.7,1.1,0.4,29
+Vermont,March,77.2,0.9,2.9,1.9,17
+Vermont,April,80.2,0,1.6,1.5,16.8
+Virginia,February,3.1,8.4,18.1,12.6,57.8
+Virginia,March,2.9,7.8,16.3,16.3,56.6
+Virginia,April,3.3,7.8,17.9,17.8,53.2
+Washington,February,86,3.9,6.7,1.2,2.2
+Washington,March,86.2,5.4,5.9,1.3,1.2
+Washington,April,88.3,4.1,5.1,1.4,1.2
+West Virginia,February,24.2,32.7,33.3,5.6,4.2
+West Virginia,March,26,35.9,29.2,5.7,3.2
+West Virginia,April,29.4,39.9,23.4,4.5,2.9
+Wisconsin,February,34.6,15.7,35.8,12.3,1.6
+Wisconsin,March,39.3,16,34.9,9.4,0.5
+Wisconsin,April,41.8,15.6,31.9,10.3,0.4
+Wyoming,February,24.6,12.2,27.4,12.8,22.9
+Wyoming,March,42.8,32.9,14.1,2.7,7.4
+Wyoming,April,51.5,21.2,21.9,1.8,3.7
+National Total,February,30.8,15.1,27.2,8.7,18.2
+National Total,March,30,15.8,25.2,9.3,19.7
+National Total,April,32,16.8,25.6,7.8,17.9

@@ -1,0 +1,262 @@
+---
+title: "PPOL 564 Final Project Report"
+author: "Caroline Adams"
+date: "12/12/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#opts_knit$set(root.dir = "/Users/carolineadams/Documents/Georgetown/F21/DSI/FinalProject/PPOL564_Final_Proejct/Data")
+require("reticulate")
+```
+
+
+### Introduction
+Medicaid provides critical health coverage for individuals with low incomes and disabilities in the United States.1 However, in some states it is harder to gain coverage than in others. Processes to determine eligibility can be burdensome and time-consuming, which can prevent individuals from receiving coverage in a timely manner. Wide variation exists in the time it takes for states to process Medicaid applications and determine if an individual will receive coverage. 
+
+This project aimed to assess factors at the state level that are predictive of how long it takes for a state to make Medicaid eligibility determinations. Visual explorations of the data were conducted to visualize associations between different independent variables and the outcome variable. Machine learning methods were applied to try and predict if a state is able to make most eligibility determinations in a timely manner. While this analysis is preliminary, the findings have important theoretical policy implications, as states look for ways to reduce burdens to accessing Medicaid coverage for residents.
+
+This report provides an overview of the problem, outlines the data used to complete this analysis, discusses methods employed to explore and analyze the data, and summarizes the results. The report concludes with a discussion on the project's success, limitations and potential next steps.
+
+### Problem Statement and Background
+The Medicaid program is an important safety-net program that is jointly financed by the federal government and individual states.1 It was designed to support individuals with low incomes and/or disabilities access health care services through the provision of government-funded health insurance.1 The federal government sets broad requirements for state programs to meet, but states have the flexibility to design their program elements to meet the needs of their enrollees.2 Given this flexibility, state eligibility criteria and determination processes vary widely across the nation, leading to inequities in the ability and time it takes to enroll in Medicaid across the United States.3
+
+Multiple barriers exist to individuals receiving Medicaid coverage, even when eligible. Many of these barriers relate to burdensome and lengthy application and eligibility determination processes that are set by state programs.3 These burdens can make it difficult for individuals to complete applications for Medicaid coverage and result in delays in receipt of Medicaid coverage. Delays in coverage provision can force eligible individuals to forgo or postpone needed care or lead to unnecessary financial burden. 
+
+Each state has a unique Medicaid program and incentives to process eligibility determinations quickly or slowly. For example, states with higher incomes may have more money to invest in technology that supports fast eligibility determinations. Conversely, other states may want to conserve funds and it may be in their interest to delay the provision of Medicaid coverage for as long as possible. Political motivations may factor into this process as well. For example, conservatives are not often in favor of government entitlement programs and may intentionally increase burdens associated with the application process or refrain from improving application processing times to make it more difficult for individuals to receive coverage. 
+
+Understanding which factors are associated with longer processing times at the state level may help identify policy solutions that can reduce barriers to eligible individuals accessing Medicaid coverage and ultimately aid in reducing inequities in health care access and outcomes in the United States. 
+
+### Data
+To complete this assessment, I am using a variety of data sources to understand what factors are associated with eligibility determination times. 
+
+First, I am using data from the Centers for Medicare and Medicaid Services (CMS) for my outcome of interest, the time it takes for states to make Medicaid eligibility determinations. This data is collected with the state as the unit of analysis for three months of each year (February, March, and April) and is available for the years 2018, 2019, and 2020. States report to CMS information regarding total number of applications, application processing time, and total enrollment by month and year. CMS then compiles the data and produces reports outlining variation in state eligibility determination times. The data is organized into categories of the percentage of eligibility determinations that are completed within 24 hours, between 1 and 7 days, between 8 and 30 days, between 30 and 45 days, and beyond 45 days. Eligibility determinations that are completed within 24 hours are considered to be "real-time" eligibility determinations.
+
+The data was downloaded as a CSV file and manipulated using Pandas. Two versions were kept for each year of the data: a full version with the percentage of determinations that were processed in each of the time categories noted above for the months February, March, and April, and a version that was grouped by state to find the average percentage of determinations that were processed in each of the time categories across the three months (i.e., averages for the year).
+
+Ultimately, the separate dataframes for each year were appended together for the purposes of modeling.
+
+Multiple additional data sources were used to obtain predictor variables of interest, the first of which was Medicaid expansion status by state. The Patient Protection and Affordable Care Act (ACA) allowed states the opportunity to expand their Medicaid programs to populations beyond those that were previously required (e.g., children, pregnant individuals, parents and caregivers); this included adults ages 19 to 64 that did not have disabilities and were not parents or caregivers to children under the age of 6, but had incomes that fell below 138% of the federal poverty level. To date, most but not all states have taken advantage of this opportunity and expanded their programs. States that have not expanded their programs typically have Republican governors or legislatures that are ideologically opposed to extending Medicaid coverage to "able-bodied adults." For this analysis, I theorized that states that chose to expand their Medicaid programs would on average have faster eligibility determination times. By expanding their programs, I believe they have demonstrated a commitment to their residents that may also translate through to their dedication to processing applications in a timely manner.
+
+Unfortunately, many state observations were missing from this data. In the 2018 data, all observations for Arkansas, Louisiana, New York, and Tennessee were missing. Additionally, data for Kansas in February was missing. In 2019, all observations for Tennessee were missing, in addition to Vermont in February. In 2020, all observations for Tennessee were again missing. Given that no outcome variable data was available for Tennessee in any year, Tennessee had to be dropped from the analysis.
+
+The second predictor variable was total Medicaid enrollment numbers. I theorized that for states with higher Medicaid enrollment, on a monthly basis, they may have higher numbers of applicants and therefore it may take longer to process eligibility determinations. 
+
+Both Medicaid expansion status and total Medicaid enrollment numbers by state and year were obtained from CMS as a CSV file for the years 2018, 2019, and 2020. The enrollment data file had comprehensive information about each state's Medicaid and CHIP enrollment by month. It also contained information from preliminary and final reports. The CSV files for each year were manipulated using Pandas in Python. Only observations corresponding to a final report were kept. All variables were dropped except state, date of report, Medicaid expansion status, and total Medicaid enrollment. Medicaid expansion status values were recoded from "Y" and "N" to 1 and 0 respectively. Variable names were recoded for clarity. The variable "state_name" was recoded to "State" to match other dataframes with which this data would eventually be joined.
+
+The third predictor variable included in this analysis was if a state contracted with managed care organizations (MCOs) to manage the care of Medicaid enrollees. Many states rely on MCOs to improve health outcomes and the cost-effectiveness of their programs. More innovative states typically have experimented with managed care in some form. I theorized that states that have managed care would have faster eligibility determination times. 
+
+Total numbers of Medicaid managed care organizations in each state were obtained from the Kaiser Family Foundation (KFF) as a CSV file. Again, manipulations of the data were completed using Pandas. If a state had greater than zero MCOs, their value was converted to a one to indicate presence of managed care. If a state had a value of 'NA' (to indicate not having any MCOs), this value was converted to a zero to indicate lack of managed care. Variables were again renamed for clarity. 
+
+The fourth predictor variable was the ability of states to make real-time eligibility determinations (within 24 hours). States are increasingly adopting technological solutions and upgrades to improve their eligibility determination process. As of January 2019, 46 states had the ability due to technology to complete an eligibility determination within 24 hours. Despite this, most of these states do not complete most of their eligibility determinations in real-time. Some states rely more heavily on the technology to complete determinations and others still involve case workers in addition to the online system to complete the process. I theorized that the states with technology that enables automatic, real-time determinations to be made would have faster average eligibility determination times.
+
+Data on state ability to conduct real-time eligibility determinations was obtained from KFF and downloaded as a CSV file with state and real-time determination ability as variables. Data manipulation was conducted using Pandas. An extra index variable was dropped. Variable names were renamed for clarity. If the value for real-time eligibility determination was "yes," this was replaced with a one, and if the value was "no," this value was replaced a zero. The variable was then converted to all floats.
+
+The sixth predictor variable included was political leaning by state. As mentioned earlier, political leaning greatly influences the structure of a state's Medicaid program. Medicaid programs in Democrat-leaning states typically have higher eligibility cut offs and cover more benefits, while the opposite is true in Republican-leaning states. 
+
+Data from FiveThirtyEight on the partisan lean of each state was used for this variable. Partisan lean values are the average margin difference between how each state votes and how the country votes overall in congressional and gubernatorial elections. The values diverge in two directions for Democrat and Republican lean and converge at a value of 0 for no partisan lean.
+
+To obtain this data, I scraped a table from the FiveThirtyEight web page that contained partisan lean values and used Pandas to convert the scraped table into a concatenated Pandas dataframe. The scraped table was slightly disjointed, with the top half of state values falling into two columns for Republican and Democrat lean, and the bottom half of the state values falling into two additional columns. I renamed the matching columns and appended them together to fix this issue. I then created one single variable called Partisan Lean to contain all values, Democrat or Republican. The old variables were then dropped from the table. Values in this one variable were edited to remove instances of "R+" and "D+" before the numbers and turned into a scale of negative to positive numbers, with the most Republican-leaning state having the most negative value.
+
+For data visualization purposes, I created one additional version of the dataframe that turned partisan lean into a categorical variable. Partisan lean values above 0 were converted to "Democrat" and values below 0 were converted to "Republican." For modeling purposes, I created a third version of the dataframe that included a dummy variable to indicate if the state leaned Democrat or not; partisan lean values above 0 were converted to 1 and values below 0 were converted to 0.
+
+7. State-level demographics (American Community Survey)
+
+### Analysis
+The methods used in this project fell into three overarching categories: data cleaning and wrangling, data visualization, and modeling. In the first phase, I obtained all outlined sources and used Pandas to manipulate the data in ways that were discussed previously. I created one joint dataset for the purposes of modeling, including all predictor variables and the outcome variable, using state as the primary unit of the analysis, with observations also organized by month and year. This dataframe initially included 459 observations. Additional steps were taken to wrangle the data in the visualization phase to alter variables to meet different needs.
+
+I assessed for missing observations and noticed that unfortunately, the state of Tennessee would have to be dropped from the analysis entirely given that the state had not reported any eligibility determination time to CMS. Additionally, other states were missing observations in other variables and these were dropped as well. Post-data wrangling, my sample size was reduced to __.
+
+The second category of methods included data visualization. I completed multiple exploratory data visualizations to both understand how predictor variables were associated with the outcome variable and to assess how my data varied over time, as this would have important implications for modeling component of my project. Visualizations completed to communicate preliminary findings from this phase of the project as well as results from the modeling phase. 
+
+should assess for correlation between variables???
+
+Lastly, the third category of methods included modeling and the application of machine learning techniques. Given the low sample size of my data, all available data was used as training data. The test data will be the future data that is released by CMS for 2021. The Scikit-learn machine learning package was utilized to estimate multiple predictive models on my data including linear regression, K-Nearest Neighbors (KNN), Decision Trees and Random Forests. A machine learning pipeline was developed to incorporate pre-processing steps, define which models should be estimated, and outline which tuning parameters should be used for each type of model.
+
+Pre-processing steps included dropping observations with missing values, turning categorical variables into categories, and creating dummy variables for states, months, and years. I also made the decision to restructure the outcome variable from the initial data format after much data exploration. The data was originally broken into proportions of determinations that were made in 6 time categories. I recoded the data to indicate whether a state completed most (greater than 50 percent) of their eligibility determinations within a week. States that completed over half of their determinations within a week were denoted as 1 and states that did not were denoted with a 0.
+The GridSearchCV package was used to identify the model with the highest predictive accuracy. The measure that was used for this was __. The pipeline was generated and and a grid search was conducted.
+
+The predictive accuracy on the training data was visualized. Most important variables were identified. permutation
+
+- explored data visually
+- outcome variable over time
+- proportion of eligibility determinations completed in various time groupings by Medicaid expansion status, presence of managed care, partisan lean, and real-time eligibility determination ability 
+
+### Results
+
+Preliminary results were obtained as a result of the data exploration and visualization phase of this project. The data visualizations resulted in four preliminary conclusions. 
+
+First, the percentage of eligibility determinations that are completed in real-time (within 24 hours) has increased since 2018. Additionally, in 2019 and 2020, most eligibility determinations (greater than 50 percent) were completed within a week across all states. This demonstrates an improvement from 2018, when approximately 46 percent of determinations were completed within a week nationally. Figure 1 depicts the percentage of eligibility determinations in 2018, 2019, and 2020 across all states that were completed within 5 different time categories: within 24 hours, between 1 and 7 days, between 8 and 30 days, between 30 and 45 days, and beyond 45 days.  
+
+```{python, echo=FALSE, message=FALSE, warning=FALSE, results = FALSE}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt 
+#from plotnine import *
+elig_det_dta_18=pd.read_csv("/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Data/state_app_time_data2018.csv")
+
+elig_det_dta_18.rename(columns={"Percent of Determinations Processed\n< 24 hours":"Percent of Determinations Processed within 24 Hours", "Percent of Determinations Processed\n1 - 7 Days":"Percent of Determinations Processed Between 1 and 7 Days", "Percent of Determinations Processed\n8 - 30 Days":"Percent of Determinations Processed Between 8 and 30 Days", "Percent of Determinations Processed\n31- 45 Days":"Percent of Determinations Processed Between 31 and 45 Days", "Percent of Determinations Processed\n45+ Days":"Percent of Determinations Processed After 45 Days"}, inplace=True)  #renaming the columns
+elig_det_dta_18['Year']=2018
+
+elig_det_dta_19=pd.read_csv("/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Data/state_app_time_dta2019.csv")
+elig_det_dta_19.rename(columns={"Percent of Determinations Processed\n< 24 hours":"Percent of Determinations Processed within 24 Hours", "Percent of Determinations Processed\n1 - 7 Days":"Percent of Determinations Processed Between 1 and 7 Days", "Percent of Determinations Processed\n8 - 30 Days":"Percent of Determinations Processed Between 8 and 30 Days", "Percent of Determinations Processed\n31- 45 Days":"Percent of Determinations Processed Between 31 and 45 Days", "Percent of Determinations Processed\n45+ Days":"Percent of Determinations Processed After 45 Days"}, inplace=True)  #renaming the columns
+elig_det_dta_19['Percent of Determinations Processed within 24 Hours']=elig_det_dta_19['Percent of Determinations Processed within 24 Hours']*100
+elig_det_dta_19['Percent of Determinations Processed Between 1 and 7 Days']=elig_det_dta_19['Percent of Determinations Processed Between 1 and 7 Days']*100
+elig_det_dta_19['Percent of Determinations Processed Between 8 and 30 Days']=elig_det_dta_19['Percent of Determinations Processed Between 8 and 30 Days']*100
+elig_det_dta_19['Percent of Determinations Processed Between 31 and 45 Days']=elig_det_dta_19['Percent of Determinations Processed Between 31 and 45 Days']*100
+elig_det_dta_19['Percent of Determinations Processed After 45 Days']=elig_det_dta_19['Percent of Determinations Processed After 45 Days']*100
+elig_det_dta_19['Year']=2019
+
+elig_det_dta_20=pd.read_csv("/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Data/state_app_time_data2020.csv")
+
+elig_det_dta_20.rename(columns={"Percent of Determinations Processed\n< 24 hours":"Percent of Determinations Processed within 24 Hours", "Percent of Determinations Processed\n1 - 7 Days":"Percent of Determinations Processed Between 1 and 7 Days", "Percent of Determinations Processed\n8 - 30 Days":"Percent of Determinations Processed Between 8 and 30 Days", "Percent of Determinations Processed\n31- 45 Days":"Percent of Determinations Processed Between 31 and 45 Days", "Percent of Determinations Processed\n45+ Days":"Percent of Determinations Processed After 45 Days"}, inplace=True)  #renaming the columns
+elig_det_dta_20['Year']=2020
+
+nat_total_18=elig_det_dta_18[elig_det_dta_18.State== "National Total"]
+nat_total_19=elig_det_dta_19[elig_det_dta_19.State== "National Total"]
+nat_total_20=elig_det_dta_20[elig_det_dta_20.State== "National Total"]
+nat_means=nat_total_18.append(nat_total_19)
+nat_means=nat_means.append(nat_total_20)
+nat_means=nat_means.groupby("Year")
+nat_means=nat_means.mean()
+nat_means=nat_means.reset_index()
+nat_means=nat_means.set_index("Year")
+nat_means=nat_means.transpose()
+nat_means.plot(kind="bar", stacked=False, figsize=(10,7), color=['#C79FEF', "#7BC8F6", "#90EE90"])  #creating a stacked bar chart based on queried data
+plt.title("Figure 1. Medicaid Eligibility Determination Times by Year", fontsize=12, fontweight="bold")  #adding a plot title
+plt.ylabel("Percentage of Eligibility Determinations Completed", fontsize=11)  #adding a y axis label
+plt.xlabel("Eligibility Determination Completion Time", fontsize=11)  #adding an x axis label
+ticks=np.arange(len(nat_means))
+plt.yticks(fontsize=10)
+plt.xticks(ticks=ticks, labels=["Within 24 Hours", "1-7 Days", "8-30 Days", "30-45 Days", "45+ Days"], fontsize=10, rotation=0)
+#plt.legend(fontsize=10)
+#plt.annotate("Source: Centers for Medicare and Medicaid Services", (0,0), (-80,-20), fontsize=20, 
+             #xycoords='axes fraction', textcoords='offset points', va='top')
+plt.show()
+```
+
+Second, it is clear that states with technology that allows for automatic eligibility determinations to be completed complete determinations faster on average. Figure 2 compares the percentage of eligibility determinations completed within the time categories for states with and without this technology. However, the presence of this technology does not guarantee that all or most determinations are completed in real-time. In fact, less than 40 percent of all determinations were made in real-time by states with this technology in 2019.
+
+```{python, echo=FALSE, message=FALSE, warning=FALSE, results = FALSE}
+enroll_dta=pd.read_csv("/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Data/cms_enrollment_dta.csv")
+enroll_dta=enroll_dta[enroll_dta['final_report'] == "Y"]
+enroll_dta=enroll_dta[['state_name', "report_date", "state_expanded_medicaid", "total_medicaid_enrollment"]]
+enroll_dta['state_expanded_medicaid'] = enroll_dta['state_expanded_medicaid'].str.replace('N','Did not expand')
+enroll_dta['state_expanded_medicaid'] = enroll_dta['state_expanded_medicaid'].str.replace('Y','Expanded')
+enroll_dta.rename(columns={"state_name":"State", "state_expanded_medicaid": "Medicaid Expansion Status", "total_medicaid_enrollment":"Total Medicaid Enrollment"}, inplace=True)  #renaming the columns
+may2021=enroll_dta[enroll_dta.report_date=="2021-05-01"]
+may2021=may2021.reset_index()
+may2021=may2021[["State", "Total Medicaid Enrollment","Medicaid Expansion Status"]]
+may2021
+
+elig_det_dta_20=elig_det_dta_20.drop(columns=['Year'])
+grouped_20 = elig_det_dta_20.groupby("State")
+means_20 = grouped_20.mean()
+means_20
+
+grouped_20 = elig_det_dta_20.groupby("State")
+means_20 = grouped_20.mean()
+
+means_20 = means_20.reset_index()
+means_20.rename(columns={"Percent of Determinations Processed\n< 24 hours":"Percent of Determinations Processed within 24 Hours", "Percent of Determinations Processed\n1 - 7 Days":"Percent of Determinations Processed Between 1 and 7 Days", "Percent of Determinations Processed\n8 - 30 Days":"Percent of Determinations Processed Between 8 and 30 Days", "Percent of Determinations Processed\n31- 45 Days":"Percent of Determinations Processed Between 31 and 45 Days", "Percent of Determinations Processed\n45+ Days":"Percent of Determinations Processed After 45 Days"}, inplace=True)  #renaming the columns
+means_20_exp=means_20.merge(may2021, how="outer", on="State")
+
+elig_dta=pd.read_csv("/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Data/rted_dta_kff.csv")
+elig_dta=elig_dta[['Location', "State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)"]]
+elig_dta=elig_dta.drop([0])
+elig_dta=elig_dta.replace({"Not reported": np.nan})
+elig_dta['State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)'] = elig_dta['State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)'].str.replace('Yes','1')
+elig_dta['State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)'] = elig_dta['State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)'].str.replace('No','0')
+
+elig_dta['State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)'] = pd.to_numeric(elig_dta['State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)'], downcast="float")
+elig_dta.rename(columns={"Location":"State", "State is Able to Make Real-Time Medicaid Eligibility Determinations (<24 Hours)":"Real-Time Eligibility Determination Ability (<24 Hours)"}, inplace=True)  #renaming the columns
+
+means_20_rted=means_20.merge(elig_dta, how="outer", on="State")
+means_20_rted["Real-Time Eligibility Determination Ability (<24 Hours)"] = np.where(means_20_rted["Real-Time Eligibility Determination Ability (<24 Hours)"]== 1, "Yes", "No")
+grouped_20_rted = means_20_rted.groupby("Real-Time Eligibility Determination Ability (<24 Hours)")
+
+grouped_20_rted = grouped_20_rted.mean()
+#grouped_20_rted=grouped_20_rted*100
+grouped_20_rted=grouped_20_rted.transpose()
+
+grouped_20_rted.plot(kind="bar", stacked=False, figsize=(10,7), color=['#C0C0C0', "#06C2AC"])  #creating a stacked bar chart based on queried data
+plt.title("Figure 2. Determination Times for States with Real-Time Determination Technology (2020)", fontsize=12, fontweight="bold")  #adding a plot title
+plt.ylabel("Percentage of Eligibility Determinations Completed", fontsize=10)  #adding a y axis label
+plt.xlabel("Eligibility Determination Completion Time", fontsize=10)  #adding an x axis label
+ticks=np.arange(len(grouped_20_rted))
+plt.yticks(fontsize=10)
+plt.xticks(ticks=ticks, labels=["Within 24 Hours", "1-7 Days", "8-30 Days", "30-45 Days", "45+ Days"], fontsize=10, rotation=0)
+plt.show()
+```
+
+
+Third, states that expanded their Medicaid programs under the Affordable Care Act complete a much higher percentage of determinations in real-time (almost 40 percent) than states that did not expand (just over 25 percent). Figure 3 compares the percentage of eligibility determinations completed within the time categories for states that did and did not expand their programs.
+
+```{python, echo=FALSE, message=FALSE, warning=FALSE, results = FALSE}
+grouped_20_exp = means_20_exp.groupby("Medicaid Expansion Status")
+grouped_20_exp = grouped_20_exp.mean()
+grouped_20_exp = grouped_20_exp.drop(columns="Total Medicaid Enrollment")
+grouped_20_exp=grouped_20_exp.transpose()
+
+grouped_20_exp.plot(kind="bar", stacked=False, figsize=(10,7), color=['#C5C9C7', "#C79FEF"])  #creating a stacked bar chart based on queried data
+plt.title("Figure 3. Medicaid Eligibility Determination Times by Expansion Status (2020)", fontsize=11, fontweight="bold")  #adding a plot title
+plt.ylabel("Proportion of Eligibility Determinations Completed", fontsize=10)  #adding a y axis label
+plt.xlabel("Eligibility Determination Completion Time", fontsize=10)  #adding an x axis label
+ticks=np.arange(len(grouped_20_exp))
+plt.yticks(fontsize=10)
+plt.xticks(ticks=ticks, labels=["Within 24 Hours", "1-7 Days", "8-30 Days", "30-45 Days", "45+ Days"], fontsize=10, rotation=0)
+plt.legend(fontsize=10)
+plt.show()
+```
+
+Fourth, states that lean Democrat politically complete approximately half of all determinations in real-time, while states that lean Republican only complete approximately 25 percent in real-time and less than half within a week. Furthermore, Republican-leaning states complete the highest proportion of eligibility determinations in the time frame of 8 to 30 days. Figure 4 compares the percentage of eligibility determinations completed within the different time categories for Democrat- and Republican-leaning states.
+
+```{python, echo=FALSE, message=FALSE, warning=FALSE, results = FALSE}
+pol_lean=pd.read_csv("/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Data/pol_lean.csv")
+means_20_partisan=means_20.merge(pol_lean, how="outer", on="State")
+
+grouped_20_partisan = means_20_partisan.groupby("Party of Partisan Lean")
+grouped_20_partisan = grouped_20_partisan.mean()
+grouped_20_partisan = grouped_20_partisan.drop(columns=["Unnamed: 0", "Partisan Lean"])
+#grouped_20_partisan=grouped_20_partisan*100
+grouped_20_partisan
+
+grouped_20_partisan=grouped_20_partisan.transpose()
+
+grouped_20_partisan.plot(kind="bar", stacked=False, figsize=(10,7), color=['#069AF3', "#FF0000"])  #creating a stacked bar chart based on queried data
+plt.title("Medicaid Eligibility Determination Times by State Partisan Lean (2020)", fontsize=12, fontweight="bold")  #adding a plot title
+plt.ylabel("Percentage of Eligibility Determinations Completed", fontsize=10)  #adding a y axis label
+plt.xlabel("Eligibility Determination Completion Time", fontsize=10)  #adding an x axis label
+ticks=np.arange(len(grouped_20_partisan))
+plt.yticks(fontsize=10)
+plt.xticks(ticks=ticks, labels=["Within 24 Hours", "1-7 Days", "8-30 Days", "30-45 Days", "45+ Days"], fontsize=10, rotation=0)
+plt.legend(fontsize=10)
+plt.show()
+```
+
+
+
+Additional Visualizations:
+total medicaid enrollment by state
+1. average enrollment time by year
+2. enrollment time in 2020 for:
+- managed care
+- demographic data
+
+### Discussion
+In my project proposal, I defined success as completing all required project elements, including the following: data cleaning, manipulation, and joining methods to result in a combined dataset to be used for obtaining meaningful insights; production of multiple interesting data visualizations; and appropriate usage of machine learning methods. I also added that success would involve gaining a deeper understanding of the methods learned in class and how to apply them to new, real-world data. I hoped to have a comprehensive understanding of the limitations of the data used in my project and the applicability of methods from class to complete the intended analyses. 
+
+I believe that I have accomplished the goals that I set for myself at the beginning of this project. First, I have completed all required elements of the project. I performed extensive data cleaning and manipulation on the numerous data sources I obtained and merged together. I leveraged the data in a variety of ways to examine variation in the data over time to inform potential modeling mechanisms and to pull out visual insights related to my question of interest. I also carefully thought through different ways to apply machine learning methods to my project and set up an ______
+
+Tools/methods considered using:
+
+If given more time to work on this project, I would reach out to the Centers for Medicare and Medicaid Services to see if there is additional data available that I could use to increase my sample size. For example, if they collect eligibility determination data for each state every month, but only publish data for three months of the year, I would ask if it would be possible to use the data from the unpublished months or years. I would also include the 2021 data in my analysis, as it should be released in the next few months, and this would also increase my sample size. Lastly, I would see if I could use existing Medicaid application data to create a variable for number of new Medicaid applications by month. I believe there is currently data for total new applications by month for Medicaid and CHIP combined, but I would like to investigate if there is a way to take out the applications geared towards CHIP. I believe that number of new applications may be more strongly correlated with application processing time than total Medicaid enrollment and may strengthen my predictive models.
+
+### Work Cited
+
+1. Rudowitz, R., Garfield, R., & Hinton, E. (2019). 10 Things to Know about Medicaid: Setting the Facts Straight. Retrieved from https://www.kff.org/medicaid/issue-brief/10-things-to-know-about-medicaid-setting-the-facts-straight/
+
+2. Medicaid.gov. (n.d.). Eligibility. Retrieved from https://www.medicaid.gov/medicaid/eligibility/index.html
+
+3. Brooks, T., Roygardner, L., & Artiga, S. (2019). Medicaid and CHIP Eligibility, Enrollment, and Cost Sharing Policies as of January 2019: Findings from a 50-State Survey. Retrieved from https://www.kff.org/report-section/medicaid-and-chip-eligibility-enrollment-and-cost-sharing-policies-as-of-january-2019-findings-from-a-50-state-survey-medicaid-and-chip-enrollment-and-renewal-processes/
