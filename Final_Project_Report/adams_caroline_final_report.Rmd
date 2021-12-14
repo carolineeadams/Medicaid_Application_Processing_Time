@@ -81,7 +81,7 @@ Preliminary results were obtained from the data exploration and visualization ph
 The remaining data visualizations resulted in four preliminary conclusions. Data for the year 2020 is displayed, as it has the least number of missing observations. First, the percentage of eligibility determinations completed in real-time (within 24 hours) has increased since 2018. Additionally, in 2019 and 2020, most eligibility determinations (greater than 50 percent) were completed within a week across all states, which demonstrates an improvement from 2018. Figure 2 depicts the percentage of eligibility determinations in 2018, 2019, and 2020 across all states that were completed within 5 different time categories.  
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Medicaid Enrollment February 2020.png')
+knitr::include_graphics('/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Final_Project_Report/Medicaid Enrollment February 2020.png')
 ```
 
 ```{python, echo=FALSE, message=FALSE, warning=FALSE, results = FALSE}
@@ -233,7 +233,7 @@ plt.show()
 From the machine learning component of the project, the best-fitting model produced an AUC ROC score of 0.953. This means that the model was able to distinguish between states that completed over 50 percent of eligibility determinations within in a week and those that did not 95.3 percent of the time. The best fitting model was the K Nearest Neighbors classifier, with a number of neighbors of 5. When the predict method was utilized on the training data, an R2 score of 0.745 was calculated. The model's overall predictive accuracy score was 0.937. While this seems highly predictive, it is possible that the model was over fit. Figure 6 below depicts the top three variables that had the highest influence (reduced the AUC ROC by the greatest amount) in the best fitting model. The variables logged-total Medicaid enrollment, the presence of managed care, and partisan lean were most influential in predicting whether a state completed greater than 50 percent of eligibility determinations within a week. 
 
 ```{r echo=FALSE, out.width='85%'}
-knitr::include_graphics('/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Reduction_in_AUCROC.png')
+knitr::include_graphics('/Users/carolineadams/Documents/Georgetown/F21/DS1/FinalProject/PPOL564_Final_Project/Final_Project_Report/Reduction_in_AUCROC.png')
 ```
 
 ### Discussion
