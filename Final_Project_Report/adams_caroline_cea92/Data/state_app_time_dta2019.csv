@@ -1,0 +1,161 @@
+﻿State,Month,"Percent of Determinations Processed
+< 24 hours","Percent of Determinations Processed
+1 - 7 Days","Percent of Determinations Processed
+8 - 30 Days","Percent of Determinations Processed
+31- 45 Days","Percent of Determinations Processed
+45+ Days"
+Alabama,February,0.81,0.08,0.09,0.01,0.01
+Alabama,March,0.86,0.07,0.06,0.01,0
+Alabama,April,0.84,0.1,0.06,0,0
+Alaska,February,0.08,0.14,0.12,0.05,0.61
+Alaska,March,0.07,0.1,0.11,0.04,0.68
+Alaska,April,0.08,0.12,0.16,0.05,0.58
+Arizona,February,0.38,0.15,0.35,0.07,0.06
+Arizona,March,0.39,0.15,0.34,0.07,0.05
+Arizona,April,0.42,0.15,0.33,0.07,0.04
+Arkansas,February,0.45,0.36,0.1,0.07,0.02
+Arkansas,March,0.45,0.34,0.11,0.09,0.01
+Arkansas,April,0.26,0.2,0.45,0.05,0.04
+California,February,0.2,0.16,0.33,0.14,0.17
+California,March,0.21,0.19,0.32,0.14,0.15
+California,April,0.21,0.22,0.34,0.13,0.1
+Colorado,February,0.41,0.27,0.19,0.06,0.07
+Colorado,March,0.43,0.28,0.21,0.05,0.04
+Colorado,April,0.41,0.33,0.21,0.03,0.03
+Connecticut,February,0.97,0.02,0.01,0,0
+Connecticut,March,0.96,0.03,0.01,0,0
+Connecticut,April,0.96,0.02,0.01,0,0
+Delaware,February,0.26,0.34,0.4,0,0
+Delaware,March,0.32,0.34,0.34,0,0
+Delaware,April,0.31,0.32,0.37,0,0
+District of Columbia,February,0.76,0.05,0.12,0.06,0.01
+District of Columbia,March,0.78,0.04,0.12,0.04,0.01
+District of Columbia,April,0.76,0.04,0.11,0.07,0.02
+Florida,February,0.35,0.26,0.33,0.04,0.02
+Florida,March,0.39,0.25,0.3,0.04,0.03
+Florida,April,0.39,0.26,0.28,0.04,0.03
+Georgia,February,0.03,0.07,0.18,0.12,0.6
+Georgia,March,0.04,0.08,0.19,0.13,0.56
+Georgia,April,0.04,0.09,0.21,0.14,0.52
+Hawaii,February,0.68,0.07,0.23,0.01,0.01
+Hawaii,March,0.56,0.14,0.28,0.01,0.01
+Hawaii,April,0.64,0.07,0.27,0.01,0.01
+Idaho,February,0.74,0.14,0.11,0.01,0
+Idaho,March,0.75,0.14,0.11,0,0.01
+Idaho,April,0.74,0.16,0.1,0,0
+Illinois,February,0.19,0.16,0.24,0.06,0.36
+Illinois,March,0.19,0.16,0.26,0.05,0.34
+Illinois,April,0.21,0.15,0.23,0.06,0.36
+Indiana,February,0.05,0.07,0.48,0.29,0.11
+Indiana,March,0.05,0.08,0.5,0.31,0.07
+Indiana,April,0.05,0.07,0.53,0.29,0.06
+Iowa,February,0.05,0.18,0.62,0.09,0.05
+Iowa,March,0.1,0.45,0.4,0.04,0.02
+Iowa,April,0.13,0.45,0.38,0.03,0.01
+Kansas,February,0.02,0.23,0.53,0.15,0.07
+Kansas,March,0.05,0.16,0.51,0.22,0.07
+Kansas,April,0.04,0.15,0.48,0.23,0.1
+Kentucky,February,0.32,0.1,0.15,0.07,0.37
+Kentucky,March,0.31,0.09,0.17,0.06,0.37
+Kentucky,April,0.31,0.09,0.18,0.07,0.36
+Louisiana,February,0.32,0.13,0.28,0.1,0.18
+Louisiana,March,0.31,0.15,0.39,0.07,0.09
+Louisiana,April,0.37,0.14,0.37,0.06,0.06
+Maine,February,0.059,0.032,0.099,0.07,0.739
+Maine,March,0.069,0.03,0.073,0.581,0.247
+Maine,April,0.077,0.036,0.076,0.046,0.766
+Maryland,February,0.974,0.022,0.003,0.002,0
+Maryland,March,0.971,0.024,0.003,0.002,0
+Maryland,April,0.972,0.022,0.003,0.002,0
+Massachusetts,February,0.739,0.069,0.053,0.031,0.107
+Massachusetts,March,0.687,0.069,0.06,0.039,0.145
+Massachusetts,April,0.749,0.123,0.041,0.009,0.078
+Michigan,February,0.309,0.231,0.24,0.11,0.11
+Michigan,March,0.355,0.275,0.256,0.083,0.032
+Michigan,April,0.384,0.268,0.262,0.074,0.013
+Minnesota,February,0.526,0.278,0.196,0,0
+Minnesota,March,0.512,0.275,0.213,0,0
+Minnesota,April,0.508,0.258,0.233,0,0
+Mississippi,February,0.018,0.209,0.47,0.217,0.086
+Mississippi,March,0.019,0.191,0.424,0.285,0.081
+Mississippi,April,0.019,0.2,0.495,0.228,0.059
+Missouri,February,0.004,0.126,0.244,0.079,0.547
+Missouri,March,0.004,0.164,0.186,0.088,0.558
+Missouri,April,0.006,0.184,0.25,0.067,0.493
+Montana,February,0.23,0.204,0.31,0.123,0.134
+Montana,March,0.282,0.263,0.315,0.08,0.06
+Montana,April,0.287,0.327,0.284,0.059,0.043
+Nebraska,February,0.257,0.178,0.466,0.055,0.044
+Nebraska,March,0.258,0.206,0.454,0.046,0.036
+Nebraska,April,0.244,0.177,0.459,0.076,0.044
+Nevada,February,0,0.604,0.33,0.054,0.011
+Nevada,March,0,0.653,0.325,0.015,0.006
+Nevada,April,0,0.608,0.363,0.022,0.007
+New Hampshire,February,0.134,0.439,0.392,0.02,0.015
+New Hampshire,March,0.138,0.45,0.376,0.021,0.015
+New Hampshire,April,0.122,0.446,0.39,0.02,0.022
+New Jersey,February,0.004,0.259,0.259,0.15,0.329
+New Jersey,March,0.002,0.133,0.419,0.126,0.32
+New Jersey,April,0.002,0.225,0.594,0.109,0.07
+New Mexico,February,0.416,0.338,0.107,0.124,0.014
+New Mexico,March,0.521,0.176,0.161,0.12,0.022
+New Mexico,April,0.518,0.182,0.171,0.116,0.013
+New York,February,0.888,0.026,0.079,0.003,0.004
+New York,March,0.988,0.001,0.005,0.003,0.004
+New York,April,0.99,0.001,0.003,0.002,0.004
+North Carolina,February,0,0.318,0.233,0.374,0.075
+North Carolina,March,0,0.339,0.214,0.401,0.046
+North Carolina,April,0,0.287,0.215,0.453,0.044
+North Dakota,February,0.046,0.198,0.438,0.175,0.143
+North Dakota,March,0.02,0.101,0.482,0.171,0.225
+North Dakota,April,0.027,0.211,0.405,0.211,0.146
+Ohio,February,0.186,0.165,0.351,0.096,0.202
+Ohio,March,0.179,0.166,0.37,0.095,0.19
+Ohio,April,0.179,0.18,0.398,0.095,0.149
+Oklahoma,February,1,0,0,0,0
+Oklahoma,March,1,0,0,0,0
+Oklahoma,April,1,0,0,0,0
+Oregon,February,0.405,0.132,0.138,0.1,0.224
+Oregon,March,0.481,0.164,0.123,0.149,0.083
+Oregon,April,0.529,0.166,0.153,0.1,0.052
+Pennsylvania,February,0.129,0.201,0.511,0.08,0.079
+Pennsylvania,March,0.154,0.228,0.519,0.069,0.03
+Pennsylvania,April,0.149,0.221,0.546,0.064,0.02
+Rhode Island,February,0.831,0.096,0.059,0.01,0.004
+Rhode Island,March,0.824,0.096,0.068,0.01,0.002
+Rhode Island,April,0.846,0.086,0.053,0.014,0.001
+South Carolina,February,0,0.622,0.138,0.042,0.198
+South Carolina,March,0,0.567,0.095,0.03,0.308
+South Carolina,April,0.478,0.236,0.148,0.044,0.094
+South Dakota,February,0,0.655,0.268,0.075,0.002
+South Dakota,March,0,0.631,0.307,0.059,0.003
+South Dakota,April,0,0.639,0.29,0.07,0.001
+Tennessee,February,,,,,
+Tennessee,March,,,,,
+Tennessee,April,,,,,
+Texas,February,0.191,0.271,0.407,0.084,0.047
+Texas,March,0.2,0.281,0.445,0.045,0.028
+Texas,April,0.222,0.246,0.441,0.065,0.025
+Utah,February,0.202,0.324,0.385,0.058,0.031
+Utah,March,0.54,0.207,0.21,0.028,0.015
+Utah,April,0.237,0.383,0.318,0.036,0.025
+Vermont,February,,,,,
+Vermont,March,0.456,0.059,0.208,0.106,0.171
+Vermont,April,0.393,0.067,0.178,0.099,0.263
+Virginia,February,0.076,0.107,0.18,0.139,0.498
+Virginia,March,0.064,0.114,0.15,0.153,0.519
+Virginia,April,0.073,0.138,0.15,0.203,0.437
+Washington,February,0.866,0.042,0.066,0.009,0.016
+Washington,March,0.866,0.045,0.066,0.01,0.013
+Washington,April,0.857,0.044,0.071,0.013,0.014
+West Virginia,February,0.253,0.303,0.36,0.051,0.033
+West Virginia,March,0.257,0.304,0.357,0.049,0.033
+West Virginia,April,0.271,0.352,0.302,0.046,0.029
+Wisconsin,February,0.394,0.157,0.337,0.105,0.008
+Wisconsin,March,0.411,0.161,0.341,0.082,0.004
+Wisconsin,April,0.416,0.156,0.324,0.099,0.005
+Wyoming,February,0.295,0.127,0.297,0.08,0.201
+Wyoming,March,0.315,0.169,0.358,0.02,0.137
+Wyoming,April,0.258,0.13,0.457,0.059,0.095
+National Total,February,0.318,0.162,0.263,0.078,0.179
+National Total,March,0.474,0.129,0.209,0.063,0.125
